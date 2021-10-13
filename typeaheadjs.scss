@@ -1,6 +1,12 @@
+// @import '../bootstrap4/bootstrap-4-dev/scss/bootstrap.scss';
 span.twitter-typeahead {
+  width: 100%;
 
   .tt-menu {
+    @extend .dropdown-menu;
+  }
+
+  .tt-dropdown-menu {
     @extend .dropdown-menu;
   }
 
@@ -9,18 +15,45 @@ span.twitter-typeahead {
   }
 
   .tt-suggestion.tt-cursor {
-    @extend .dropdown-item.active;
+     @extend .dropdown-item.active;
   }
 
   .input-group & {
-    display: flex !important;
-    align-items: center;
-    position: relative;
-    flex: 1 1 auto;
-    width: 1%;
-
-    .tt-menu, .tt-hint, .tt-input {
-      width: 100%;
+    display: block !important;
+    .tt-dropdown-menu {
+      top:32px !important;
     }
   }
+  .input-group.input-group-lg & {
+    .tt-dropdown-menu {
+      top:44px !important;
+    }
+  }
+  .input-group.input-group-sm & {
+    .tt-dropdown-menu {
+      top:28px !important;
+    }
+  }
+}
+
+// Fix from https://github.com/bassjobsen/typeahead.js-bootstrap4-css/issues/1#issuecomment-395792024
+
+.input-group>.twitter-typeahead {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+  width: 1%;
+  margin-bottom: 0;
+}
+.input-group>.twitter-typeahead:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.input-group>.twitter-typeahead>.tt-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-control.tt-input:focus {
+  z-index: 3
 }
